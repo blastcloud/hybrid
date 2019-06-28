@@ -1,0 +1,26 @@
+{
+    "name": "blastcloud/hybrid",
+    "description": "Charge up your app or SDK with a testing library specifically for Symfony/HttpClient",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Kelso",
+            "email": "kelso.adam@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/http-client": "^4.3",
+        "phpunit/phpunit": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "BlastCloud\\Hybrid\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests"
+        }
+    }
+}
