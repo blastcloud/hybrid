@@ -11,7 +11,9 @@
     ],
     "require": {
         "symfony/http-client": "^4.3",
-        "phpunit/phpunit": "^8.2"
+        "phpunit/phpunit": "^8.2",
+        "ext-json": "*",
+        "blastcloud/chassis": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -22,5 +24,11 @@
         "psr-4": {
             "tests\\": "tests"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../chassis"
+        }
+    ]
 }

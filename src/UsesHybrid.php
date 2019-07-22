@@ -4,6 +4,7 @@ namespace BlastCloud\Hybrid;
 
 trait UsesHybrid
 {
+    /** @var Hybrid */
     public $hybrid;
 
     /**
@@ -11,7 +12,16 @@ trait UsesHybrid
      */
     public function setUpHyrbid()
     {
+        $engine = $this->engineName();
 
+        $this->$engine = new Hybrid($this);
+    }
+
+    private function engineName()
+    {
+        return defined('self::ENGINE_NAME')
+            ? self::ENGINE_NAME
+            : 'hybrid';
     }
 
     /**
@@ -22,8 +32,9 @@ trait UsesHybrid
      */
     public function runHybridAssertions()
     {
+        $name = $this->engineName();
         (function () {
             $this->runExpectations();
-        })->call($this->hybrid);
+        })->call($this->$name);
     }
 }

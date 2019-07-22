@@ -75,4 +75,24 @@ class MockQueueTest extends TestCase
 
         $this->client->request('GET', 'https://www.example.com');
     }
+
+    public function testOptionPassingAndMerging()
+    {
+        $options = [
+            'something' => 'value',
+            'another' => 'shouldBeReplaced'
+        ];
+
+        $this->queue = new MockQueue($this->history, $options);
+        $this->client = new MockHttpClient($this->queue);
+
+        $this->queue->append(new MockResponse());
+        $this->client->request('GET', 'https://www.somewhere.com/api/v2', [
+            'another' => $another = 'overwritten'
+        ]);
+
+        $this->assertArrayHasKey('options', $this->history[0]);
+        $this->assertEquals('value', $this->history[0]['options']['something']);
+        $this->assertEquals($another, $this->history[0]['options']['another']);
+    }
 }

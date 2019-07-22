@@ -9,12 +9,18 @@ class MockQueue
 
     public $responses = [];
 
-    public function __construct(array &$history)
+    public $options = [];
+
+    public function __construct(array &$history, array $options = [])
     {
-        $this->history = function ($request, $response) use (&$history) {
+        $this->options = $options;
+
+        $this->history = function ($request, $ops, $response) use (&$history, $options) {
             $history[] = [
                 'request' => $request,
-                'response' => $response
+                'response' => $response,
+                'options' => array_merge($this->options, $ops),
+                'error' => []
             ];
         };
     }
@@ -40,6 +46,7 @@ class MockQueue
                 'method' => $method,
                 'url' => $url
             ] + $options,
+            $options,
             $response = array_shift($this->responses)
         );
 
