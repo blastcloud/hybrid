@@ -2,7 +2,9 @@
 
 namespace BlastCloud\Hybrid;
 
-class MockQueue
+use BlastCloud\Chassis\Interfaces\MockHandler;
+
+class MockQueue implements MockHandler
 {
     /** @var \Closure */
     public $history;

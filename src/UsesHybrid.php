@@ -30,7 +30,7 @@ trait UsesHybrid
      * evaluate all requests in the history. Closure::call()
      * is used to hide this method from the user APIs.
      */
-    public function runHybridAssertions()
+    public function runHybridExpectations()
     {
         $name = $this->engineName();
         (function () {
