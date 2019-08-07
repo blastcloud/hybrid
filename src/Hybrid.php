@@ -6,6 +6,7 @@ use BlastCloud\Chassis\Chassis;
 use PHPUnit\Framework\MockObject\Matcher\InvokedRecorder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\MockHttpClient;
+use BlastCloud\Chassis\Expectation;
 
 class Hybrid extends Chassis
 {
@@ -27,7 +28,7 @@ class Hybrid extends Chassis
     {
         $this->mockHandler = new MockQueue($this->history, $options);
 
-        return new MockHttpClient($this->mockHandler);
+        return new MockHttpClient($this->mockHandler, $options['base_uri'] ?? null);
     }
 
     /**

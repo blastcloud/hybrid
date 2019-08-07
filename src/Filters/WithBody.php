@@ -19,12 +19,16 @@ class WithBody extends Base implements With
     public function __invoke(array $history): array
     {
         return array_filter($history, function ($call) {
-        
+            $body = $call['options']['body'] ?? null;
+
+            return $this->exclusive
+                ? $body == $this->body
+                : strpos($body, $this->body) !== false;
         });
     }
     
-    public function __toString()
+    public function __toString(): string
     {
-        
+        return str_pad('Body:', self::STR_PAD).$this->body;
     }
 }

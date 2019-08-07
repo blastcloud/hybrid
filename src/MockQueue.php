@@ -27,12 +27,12 @@ class MockQueue implements MockHandler
         };
     }
 
-    public function append($response)
+    public function append($response): void
     {
         $this->responses[] = $response;
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->responses);
     }
