@@ -30,7 +30,7 @@ class WithBodyTest extends TestCase
         $this->hybrid->queueMany(new MockResponse(''), 2);
 
         $this->client->request('POST', '/url', [
-            'body' => json_encode($body)
+            'json' => $body
         ]);
 
         $this->client->request('POST', '/aowe', [

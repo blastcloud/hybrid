@@ -24,11 +24,19 @@ class WithHeader extends Base implements With
     public function __invoke(array $history): array
     {
         return array_filter($history, function ($call) {
-        
+            foreach ($this->headers as $key => $value) {
+                $header = $call['request']['headers'][strtolower($key)] ?? [];
+
+                if ($header != $value && !in_array($value, $header)) {
+                    return false;
+                }
+            }
+
+            return true;
         });
     }
     
-    public function __toString()
+    public function __toString(): string
     {
         return str_pad('Headers:', self::STR_PAD)
             . json_encode($this->headers, JSON_PRETTY_PRINT);
