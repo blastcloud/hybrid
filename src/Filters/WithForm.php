@@ -29,7 +29,7 @@ class WithForm extends Base implements With
     
     }
     
-    public function __toString()
+    public function __toString(): string
     {
         return str_pad("Form:", self::STR_PAD)
             .json_encode($this->fields, JSON_PRETTY_PRINT);

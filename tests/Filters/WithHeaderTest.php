@@ -2,9 +2,10 @@
 
 namespace tests\Filters;
 
+use BlastCloud\Chassis\Expectation;
 use BlastCloud\Hybrid\UsesHybrid;
 use Symfony\Component\HttpClient\Response\MockResponse;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;
 
 class WithHeaderTest extends TestCase
@@ -38,5 +39,22 @@ class WithHeaderTest extends TestCase
         $this->client->request('GET', '/url', [
             'headers' => $headers + ['Auth' => 'Fantastic']
         ]);
+    }
+
+    public function testWithHeadersFail()
+    {
+        $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessageRegExp("/\bHeaders\b/");
+
+        $this->hybrid->queueResponse(new MockResponse());
+        $this->client->request('GET', '/url', [
+            'headers' => ['auth' => 'some-token']
+        ]);
+
+        $this->hybrid->assertFirst(function (Expectation $e) {
+            return $e->withHeaders([
+                'something' => 'a value'
+            ]);
+        });
     }
 }

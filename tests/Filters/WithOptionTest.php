@@ -2,11 +2,9 @@
 
 namespace tests\Filters;
 
-use BlastCloud\Hybrid\Hybrid;
-use BlastCloud\Hybrid\UsesHybrid;
-use PHPUnit\Framework\AssertionFailedError;
-use PHPUnit\Framework\TestCase;
-use BlastCloud\Hybrid\Expectation;
+use BlastCloud\Hybrid\{Hybrid, UsesHybrid};
+use PHPUnit\Framework\{AssertionFailedError, TestCase};
+use BlastCloud\Chassis\Expectation;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 

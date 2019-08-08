@@ -22,7 +22,7 @@ class WithJson extends Base implements With
         });
     }
     
-    public function __toString()
+    public function __toString(): string
     {
         return str_pad("JSON:", self::STR_PAD)
             .json_encode($this->json, JSON_PRETTY_PRINT);
