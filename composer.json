@@ -19,8 +19,8 @@
         "psr-4": {
             "BlastCloud\\Hybrid\\": "src"
         },
-        "files": [
-            "src/Expectation.php"
+        "files" : [
+            "src/macros.php"
         ]
     },
     "autoload-dev": {

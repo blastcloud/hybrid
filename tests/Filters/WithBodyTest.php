@@ -3,10 +3,9 @@
 
 namespace tests\Filters;
 
-use BlastCloud\Hybrid\UsesHybrid;
+use BlastCloud\Hybrid\{UsesHybrid, Expectation};
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;
-use BlastCloud\Chassis\Expectation;
 use Symfony\Component\HttpClient\Response\MockResponse;
 
 class WithBodyTest extends TestCase
@@ -54,10 +53,10 @@ class WithBodyTest extends TestCase
 
         $this->client->request('POST', '/awoiue', ['body' => $body]);
 
-        $this->hybrid->assertFirst(function ($e) {
+        $this->hybrid->assertFirst(function (Expectation $e) {
             return $e->withBody('nasty string');
         });
-        $this->hybrid->assertNotFirst(function ($e) {
+        $this->hybrid->assertNotFirst(function (Expectation $e) {
             return $e->withBody('fantastic fantastic');
         });
     }
@@ -71,7 +70,7 @@ class WithBodyTest extends TestCase
         $this->hybrid->queueResponse(new MockResponse());
         $this->client->request('GET', '/aowei');
 
-        $this->hybrid->assertFirst(function ($e) {
+        $this->hybrid->assertFirst(function (Expectation $e) {
             return $e->withBody('hello');
         });
     }

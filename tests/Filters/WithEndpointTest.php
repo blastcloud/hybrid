@@ -2,8 +2,7 @@
 
 namespace tests\Filters;
 
-use BlastCloud\Chassis\Expectation;
-use BlastCloud\Hybrid\UsesHybrid;
+use BlastCloud\Hybrid\{Expectation, UsesHybrid};
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;

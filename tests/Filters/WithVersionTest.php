@@ -2,7 +2,7 @@
 
 namespace tests\Filters;
 
-use BlastCloud\Hybrid\UsesHybrid;
+use BlastCloud\Hybrid\{UsesHybrid, Expectation};
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
@@ -42,7 +42,7 @@ class WithVersionTest extends TestCase
         $this->hybrid->queueResponse(new MockResponse());
         $this->client->request('GET', '/aowei');
 
-        $this->hybrid->assertFirst(function ($e) {
+        $this->hybrid->assertFirst(function (Expectation $e) {
             return $e->withVersion(2.0);
         });
     }
