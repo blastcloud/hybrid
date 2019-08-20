@@ -10,6 +10,15 @@ class WithEndpoint extends Base implements With
 {
     public $endpoint;
     protected $method;
+    
+    const VERBS = [
+        'GET',
+        'POST',
+        'PUT',
+        'PATCH',
+        'DELETE',
+        'OPTIONS'
+    ];
 
     public function withEndpoint(string $uri, string $method)
     {
