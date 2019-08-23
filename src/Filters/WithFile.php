@@ -6,10 +6,13 @@ use BlastCloud\Chassis\Helpers\{Disposition, File};
 use BlastCloud\Chassis\Traits\Helpers;
 use BlastCloud\Chassis\Interfaces\With;
 use BlastCloud\Chassis\Filters\Base;
+use Symfony\Component\HttpClient\Exception\TransportException;
 
 class WithFile extends Base implements With
 {
     use Helpers;
+
+    private static $CHUNK_SIZE = 16372;
 
     protected $files = [];
     protected $exclusive = false;
@@ -31,11 +34,7 @@ class WithFile extends Base implements With
     public function __invoke(array $history): array
     {
         return array_filter($history, function ($item) {
-            $body = $item['request']->getBody();
-
-            if (!$body instanceof MultipartStream) {
-                return false;
-            }
+            $body = $item['request']['body'];
 
             $dispositions = [];
 

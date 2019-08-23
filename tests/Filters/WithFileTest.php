@@ -7,13 +7,14 @@ use BlastCloud\Chassis\Helpers\File;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Mime\Part\{Multipart\FormDataPart, DataPart};
 
 class WithFileTest extends TestCase
 {
     use UsesHybrid;
 
-    const TEXT_FILE = __DIR__.'/../testFiles/test-file.txt';
-    const IMG_FILE = __DIR__.'/../testFiles/blast-cloud.jpg';
+    const TEXT_FILE = __DIR__.'/../helpers/text-file.txt';
+    const IMG_FILE = __DIR__.'/../helpers/blast-cloud.jpg';
 
     /** @var HttpClient */
     public $client;
@@ -25,28 +26,23 @@ class WithFileTest extends TestCase
         $this->client = $this->hybrid->getClient(['base_uri' => 'https://www.theplace.org/v3']);
     }
 
-    public function testFileThrowsExceptionForNonExistentProperty()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp("/\bsomething property does not exist\b/");
-
-        $file = new File();
-        $file->something = 'aoiweuowiue';
-    }
-
     public function testMultipartEliminatesNoFile()
     {
         $this->hybrid->expects($this->never())
             ->withFile('first', File::create(['contents' => 'something']))
             ->will(new MockResponse());
 
-        $this->client->request('POST', '/woeiw', [
-            'multipart' => [
-                [
-                    'name' => 'first',
-                    'contents' => 'value'
-                ]
+        $formData = new FormDataPart(
+            [
+                'first' => 'value',
+                'second' => 'another',
+                'third' => DataPart::fromPath('./tests/helpers/text-file.txt')
             ]
+        );
+
+        $this->client->request('POST', '/woeiw', [
+            'headers' => $formData->getPreparedHeaders()->toArray(),
+            'body' => $formData->bodyToIterable()
         ]);
     }
 
