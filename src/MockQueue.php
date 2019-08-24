@@ -44,11 +44,16 @@ class MockQueue implements MockHandler
         }
 
         $h = $this->history;
+
+        // Get rid of the body. It doesn't make sense to put in the options later on.
+        $o = $options;
+        unset($o['body']);
+
         $h([
                 'method' => $method,
                 'url' => $url
             ] + $options,
-            $options,
+            $o,
             $response = array_shift($this->responses)
         );
 

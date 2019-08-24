@@ -19,7 +19,7 @@ class WithBody extends Base implements With
     public function __invoke(array $history): array
     {
         return array_filter($history, function ($call) {
-            $body = $call['options']['body'] ?? null;
+            $body = $call['request']['body'] ?? null;
 
             return $this->exclusive
                 ? $body == $this->body

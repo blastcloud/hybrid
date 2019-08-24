@@ -64,14 +64,13 @@ class WithFileTest extends TestCase
         $this->hybrid->queueResponse(new MockResponse());
         $filename = 'spikity-spockity.txt';
 
+        $form = new FormDataPart([
+            'file1' => DataPart::fromPath(self::TEXT_FILE)
+        ]);
+
         $this->client->request('POST', '/awoeiu', [
-            'multipart' => [
-                [
-                    'name' => 'file1',
-                    'contents' => fopen(self::TEXT_FILE, 'r'),
-                    'filename' => $filename
-                ]
-            ]
+            'body' => $form->bodyToIterable(),
+            'headers' => $form->getPreparedHeaders()->toArray()
         ]);
 
         // File Location
@@ -103,13 +102,13 @@ class WithFileTest extends TestCase
                 'avatar' => $file
             ])->will(new MockResponse());
 
+        $form = new FormDataPart([
+            'avatar' => DataPart::fromPath(self::IMG_FILE)
+        ]);
+
         $this->client->request('POST', '/awoeiu', [
-            'multipart' => [
-                [
-                    'name' => 'avatar',
-                    'contents' => fopen(self::IMG_FILE, 'r')
-                ]
-            ]
+            'body' => $form->bodyToIterable(),
+            'headers' => $form->getPreparedHeaders()->toArray()
         ]);
     }
 
@@ -117,17 +116,14 @@ class WithFileTest extends TestCase
     {
         $this->hybrid->queueMany(new MockResponse(), 2);
 
+        $form = new FormDataPart([
+           'text' => DataPart::fromPath(self::TEXT_FILE),
+           'avatar' => DataPart::fromPath(self::IMG_FILE)
+        ]);
+
         $this->client->request('POST', '/aoiwoiu', [
-            'multipart' => [
-                [
-                    'name' => 'text',
-                    'contents' => fopen(self::TEXT_FILE, 'r')
-                ],
-                [
-                    'name' => 'avatar',
-                    'contents' => fopen(self::IMG_FILE, 'r')
-                ]
-            ]
+            'headers' => $form->getPreparedHeaders()->toArray(),
+            'body' => $form->bodyToIterable()
         ]);
 
         $this->hybrid->assertNotFirst(function (Expectation $e) {
@@ -146,30 +142,6 @@ class WithFileTest extends TestCase
                     'contents' => fopen(self::TEXT_FILE, 'r')
                 ])
             ]);
-        });
-    }
-
-    public function testHeaderComparing()
-    {
-        $this->hybrid->queueResponse(new MockResponse());
-
-        $this->client->request('POST', '/aoeiu', [
-            'multipart' => [
-                [
-                    'name' => 'something',
-                    'contents' => 'aowieuw',
-                    'filename' => 'overset',
-                    'headers' => [
-                        'Foo' => 'Baz'
-                    ]
-                ]
-            ]
-        ]);
-
-        $this->hybrid->assertFirst(function (Expectation $e) {
-            return $e->withFile('something', File::create([
-                'headers' => ['Foo' => 'Baz']
-            ]));
         });
     }
 }

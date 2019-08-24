@@ -14,6 +14,8 @@ use BlastCloud\Chassis\Helpers\File;
  * @method $this withQuery(array $query)
  * @method $this withOption(string $key, $value)
  * @method $this withOptions(array $values)
+ * @method $this withFile(string $key, File $file)
+ * @method $this withFiles(array $files, bool $exclusive = false)
  * @method $this withFormField(string $key, string $value)
  * @method $this withForm(array $fields, bool $exclusive = false)
  * @method $this withJson(array $json, bool $exclusive = false)

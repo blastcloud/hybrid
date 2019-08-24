@@ -34,11 +34,12 @@ class WithFile extends Base implements With
     public function __invoke(array $history): array
     {
         return array_filter($history, function ($item) {
-            $body = $item['request']['body'];
+            $body = $item['request']['body'] ?? '';
 
             $dispositions = [];
+            $boundary = $this->getBoundary($item['request']['request_headers']);
 
-            foreach ($this->parseMultipartBody($body) as $d) {
+            foreach ($this->parseMultipartBody($body, $boundary) as $d) {
                 if ($d->isFile()) {
                     $dispositions[$d->name] = $d;
                 }
@@ -52,6 +53,17 @@ class WithFile extends Base implements With
 
             return !$this->exclusive || count($dispositions) == count($this->files);
         });
+    }
+
+    protected function getBoundary(array $headers): string
+    {
+        foreach ($headers as $header) {
+            if ($boundary = $this->parseHeaderVariables('boundary', $header)) {
+                return $boundary;
+            }
+        }
+
+        return '';
     }
 
     public function __toString(): string
