@@ -5,11 +5,11 @@ namespace BlastCloud\Hybrid\Filters;
 use BlastCloud\Chassis\Filters\Base;
 use BlastCloud\Chassis\Interfaces\With;
 use BlastCloud\Chassis\Traits\Helpers;
-use GuzzleHttp\Psr7\MultipartStream;
+use BlastCloud\Hybrid\Traits\Forms;
 
 class WithForm extends Base implements With
 {
-    use Helpers;
+    use Helpers, Forms;
 
     protected $form = [];
     protected $exclusive = false;
@@ -31,11 +31,12 @@ class WithForm extends Base implements With
     public function __invoke(array $history): array
     {
         return array_filter($history, function ($call) {
-            $body = $call['request']->getBody();
+            $body = $call['request']['body'] ?? '';
+            $boundary = $this->getBoundary($call['request']['request_headers'] ?? '');
 
-            if ($body instanceof MultipartStream) {
+            if (!empty($boundary)) {
                 $parsed = [];
-                foreach ($this->parseMultipartBody($body) as $d) {
+                foreach ($this->parseMultipartBody($body, $boundary) as $d) {
                     if (!$d->isFile()) $parsed[$d->name] = $d->contents;
                 }
             } else {

@@ -2,7 +2,7 @@
 
 namespace tests\Filters;
 
-use BlastCloud\Hybrid\{Expectation, UsesHybrid};
+use BlastCloud\Hybrid\{Expectation, Filters\WithEndpoint, UsesHybrid};
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
@@ -42,5 +42,19 @@ class WithEndpointTest extends TestCase
         $this->hybrid->assertFirst(function (Expectation $e) {
             return $e->withEndpoint('/v1/api/users', 'POST');
         });
+    }
+
+    public function testMacrosForVerbs()
+    {
+        foreach (WithEndpoint::VERBS as $verb) {
+            $method = strtolower($verb);
+            $this->hybrid->expects($this->once())
+                ->{$method}('/url-for-'.$method.'ing')
+                ->will(new MockResponse());
+
+            $this->client->request($verb, '/url-for-'.$method.'ing', [
+                'json' => ['something' => 'value']
+            ]);
+        }
     }
 }

@@ -2,15 +2,15 @@
 
 namespace BlastCloud\Hybrid\Filters;
 
+use BlastCloud\Hybrid\Traits\Forms;
 use BlastCloud\Chassis\Helpers\{Disposition, File};
-use BlastCloud\Chassis\Traits\Helpers;
 use BlastCloud\Chassis\Interfaces\With;
 use BlastCloud\Chassis\Filters\Base;
-use Symfony\Component\HttpClient\Exception\TransportException;
+use BlastCloud\Chassis\Traits\Helpers;
 
 class WithFile extends Base implements With
 {
-    use Helpers;
+    use Helpers, Forms;
 
     private static $CHUNK_SIZE = 16372;
 
@@ -37,7 +37,7 @@ class WithFile extends Base implements With
             $body = $item['request']['body'] ?? '';
 
             $dispositions = [];
-            $boundary = $this->getBoundary($item['request']['request_headers']);
+            $boundary = $this->getBoundary($item['request']['request_headers'] ?? '');
 
             foreach ($this->parseMultipartBody($body, $boundary) as $d) {
                 if ($d->isFile()) {
@@ -53,17 +53,6 @@ class WithFile extends Base implements With
 
             return !$this->exclusive || count($dispositions) == count($this->files);
         });
-    }
-
-    protected function getBoundary(array $headers): string
-    {
-        foreach ($headers as $header) {
-            if ($boundary = $this->parseHeaderVariables('boundary', $header)) {
-                return $boundary;
-            }
-        }
-
-        return '';
     }
 
     public function __toString(): string

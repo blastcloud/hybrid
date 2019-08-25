@@ -17,7 +17,9 @@ class MockHttpClient extends Base
 
             foreach ($body as $data) {
                 if (!\is_string($data)) {
+                    // @codeCoverageIgnoreStart
                     throw new TransportException(sprintf('Return value of the "body" option callback must be string, %s returned.', \gettype($data)));
+                    // @codeCoverageIgnoreEnd
                 }
 
                 $result .= $data;
