@@ -10,7 +10,7 @@ trait UsesHybrid
     /**
      * @before
      */
-    public function setUpHyrbid()
+    public function setUpHybrid()
     {
         $engine = $this->engineName();
 

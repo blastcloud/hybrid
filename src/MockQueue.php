@@ -22,7 +22,9 @@ class MockQueue implements MockHandler
                 'request' => $request,
                 'response' => $response,
                 'options' => array_merge($this->options, $ops),
-                'error' => []
+                'error' => ($response instanceof \Throwable)
+                    ? $response->getMessage()
+                    : []
             ];
         };
     }
@@ -56,6 +58,11 @@ class MockQueue implements MockHandler
             $o,
             $response = array_shift($this->responses)
         );
+
+        if ($response instanceof \Throwable)
+        {
+            throw $response;
+        }
 
         return $response;
     }

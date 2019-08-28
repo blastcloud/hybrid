@@ -49,7 +49,9 @@ class WithBodyTest extends TestCase
     {
         $body = 'Some long nasty string to test things against.';
 
-        $this->hybrid->queueResponse(new MockResponse());
+        $this->hybrid->queueResponse(new MockResponse(null, [
+            'status_code' => 204
+        ]));
 
         $this->client->request('POST', '/awoiue', ['body' => $body]);
 

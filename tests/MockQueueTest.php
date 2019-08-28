@@ -22,7 +22,7 @@ class MockQueueTest extends TestCase
         parent::setUp();
 
         $this->queue = new MockQueue($this->history);
-        $this->client = new MockHttpClient($this->queue);
+        $this->client = new MockHttpClient($this->queue, 'https://www.example.com/api/');
     }
 
     public function tearDown(): void
@@ -94,5 +94,16 @@ class MockQueueTest extends TestCase
         $this->assertArrayHasKey('options', $this->history[0]);
         $this->assertEquals('value', $this->history[0]['options']['something']);
         $this->assertEquals($another, $this->history[0]['options']['another']);
+    }
+
+    public function testIfGivenAnExceptionThrowIt()
+    {
+        $message = 'My special message on the weird exception!!';
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage($message);
+
+        $this->queue->append(new \InvalidArgumentException($message));
+
+        $this->client->request('GET', 'anywhere');
     }
 }
