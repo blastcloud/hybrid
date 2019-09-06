@@ -4,12 +4,11 @@ namespace BlastCloud\Hybrid\Filters;
 
 use BlastCloud\Chassis\Filters\Base;
 use BlastCloud\Chassis\Interfaces\With;
-use BlastCloud\Chassis\Traits\Helpers;
 use BlastCloud\Hybrid\Traits\Forms;
 
 class WithForm extends Base implements With
 {
-    use Helpers, Forms;
+    use Forms;
 
     protected $form = [];
     protected $exclusive = false;

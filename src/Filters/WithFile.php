@@ -6,11 +6,10 @@ use BlastCloud\Hybrid\Traits\Forms;
 use BlastCloud\Chassis\Helpers\{Disposition, File};
 use BlastCloud\Chassis\Interfaces\With;
 use BlastCloud\Chassis\Filters\Base;
-use BlastCloud\Chassis\Traits\Helpers;
 
 class WithFile extends Base implements With
 {
-    use Helpers, Forms;
+    use Forms;
 
     private static $CHUNK_SIZE = 16372;
 

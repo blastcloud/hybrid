@@ -4,7 +4,6 @@ namespace BlastCloud\Hybrid\Filters;
 
 use BlastCloud\Chassis\Filters\Base;
 use BlastCloud\Chassis\Interfaces\With;
-use GuzzleHttp\Psr7\Uri;
 
 class WithEndpoint extends Base implements With
 {
