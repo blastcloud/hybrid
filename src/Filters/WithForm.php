@@ -32,7 +32,14 @@ class WithForm extends Base implements With
     {
         return array_filter($history, function ($call) {
             $body = $call['request']['body'] ?? '';
-            $boundary = $this->getBoundary($call['request']['request_headers'] ?? '');
+
+            // TODO: Once HttpClient is stable, remove the excess here and just use the
+            // proper index name and shape; whatever that is.
+            $boundary = $this->getBoundary(
+                $call['request']['normalized_headers']
+                ?? $call['request']['request_headers']
+                ?? []
+            );
 
             if (!empty($boundary)) {
                 $parsed = [];

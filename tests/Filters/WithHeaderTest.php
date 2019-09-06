@@ -26,7 +26,8 @@ class WithHeaderTest extends TestCase
         $headers = [
             'X-Something' => 'Special',
             'host' => 'example.com',
-            'Content-Type' => 'application/json'
+            'Content-Type' => 'application/json',
+            'array' => ['first', 'second']
         ];
 
         $this->hybrid->queueResponse(new MockResponse());

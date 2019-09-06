@@ -37,7 +37,7 @@ class WithFile extends Base implements With
             $body = $item['request']['body'] ?? '';
 
             $dispositions = [];
-            $boundary = $this->getBoundary($item['request']['request_headers'] ?? '');
+            $boundary = $this->getBoundary($item['request']['headers'] ?? []);
 
             foreach ($this->parseMultipartBody($body, $boundary) as $d) {
                 if ($d->isFile()) {

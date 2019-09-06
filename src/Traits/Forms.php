@@ -11,6 +11,10 @@ trait Forms
     protected function getBoundary(array $headers): string
     {
         foreach ($headers as $header) {
+            if (is_array($header)) {
+                $header = $header[0];
+            }
+
             if ($boundary = $this->parseHeaderVariables('boundary', $header)) {
                 return $boundary;
             }
