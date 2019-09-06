@@ -19,7 +19,7 @@ use BlastCloud\Chassis\Helpers\File;
  * @method $this withFormField(string $key, string $value)
  * @method $this withForm(array $fields, bool $exclusive = false)
  * @method $this withJson(array $json, bool $exclusive = false)
- * @method $this withVersion(int $version)
+ * @method $this withProtocol(float $protocol)
  * @method $this withEndpoint(string $url, string $verb)
  * @method $this get(string $url)
  * @method $this post(string $url)

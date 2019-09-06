@@ -7,7 +7,7 @@ use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 
-class WithVersionTest extends TestCase
+class WithProtocolTest extends TestCase
 {
     use UsesHybrid;
 
@@ -24,7 +24,7 @@ class WithVersionTest extends TestCase
     public function testWithProtocol()
     {
         $this->hybrid->expects($this->once())
-            ->withVersion(2.0);
+            ->withProtocol(2.0);
 
         $this->hybrid->queueResponse(new MockResponse(''));
 
@@ -36,14 +36,14 @@ class WithVersionTest extends TestCase
     public function testWithBodyError()
     {
         $this->expectException(AssertionFailedError::class);
-        $this->expectExceptionMessageRegExp("/\bVersion:\b/");
+        $this->expectExceptionMessageRegExp("/\bProtocol:\b/");
         $this->expectExceptionMessageRegExp("/\b2\b/");
 
         $this->hybrid->queueResponse(new MockResponse());
         $this->client->request('GET', '/aowei');
 
         $this->hybrid->assertFirst(function (Expectation $e) {
-            return $e->withVersion(2.0);
+            return $e->withProtocol(2.0);
         });
     }
 }

@@ -8,21 +8,21 @@
     "packages": [
         {
             "name": "blastcloud/chassis",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blastcloud/chassis.git",
-                "reference": "71348951a1bac88ed6362285e8f2a6a792410066"
+                "reference": "d4e1d10e2a4b4058f36c22156f87cde6f8c4387f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blastcloud/chassis/zipball/71348951a1bac88ed6362285e8f2a6a792410066",
-                "reference": "71348951a1bac88ed6362285e8f2a6a792410066",
+                "url": "https://api.github.com/repos/blastcloud/chassis/zipball/d4e1d10e2a4b4058f36c22156f87cde6f8c4387f",
+                "reference": "d4e1d10e2a4b4058f36c22156f87cde6f8c4387f",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "phpunit/phpunit": ">=7.2"
+                "phpunit/phpunit": ">=7.0"
             },
             "type": "library",
             "autoload": {
@@ -41,8 +41,8 @@
                     "email": "kelso.adam@gmail.com"
                 }
             ],
-            "description": "The frame for your next HTTP client library tests.",
-            "time": "2019-09-05T14:29:17+00:00"
+            "description": "A framework for building declarative HTTP client test libraries",
+            "time": "2019-09-06T03:40:13+00:00"
         },
         {
             "name": "doctrine/instantiator",

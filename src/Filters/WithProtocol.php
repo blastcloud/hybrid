@@ -5,13 +5,13 @@ namespace BlastCloud\Hybrid\Filters;
 use BlastCloud\Chassis\Filters\Base;
 use BlastCloud\Chassis\Interfaces\With;
 
-class WithVersion extends Base implements With
+class WithProtocol extends Base implements With
 {
     protected $version;
     
-    public function withVersion($version)
+    public function withProtocol($protocol)
     {
-        $this->version = $version;
+        $this->version = $protocol;
     }
     
     public function __invoke(array $history): array
@@ -23,6 +23,6 @@ class WithVersion extends Base implements With
     
     public function __toString(): string
     {
-        return str_pad("Version:", self::STR_PAD).$this->version;
+        return str_pad("Protocol:", self::STR_PAD).$this->version;
     }
 }
