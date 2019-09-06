@@ -7,7 +7,7 @@
         <img src="https://poser.pugx.org/blastcloud/hybrid/v/stable" />
     </a>
     <a href="https://codeclimate.com/github/blastcloud/hybrid/maintainability">
-        <img src="https://api.codeclimate.com/v1/badges/01c6f66eaa5db02e5411/maintainability" />
+        <img src="https://api.codeclimate.com/v1/badges/1351a1b75d4bea156f66/maintainability" />
     </a>
     <a href="https://github.com/blastcloud/hybrid/blob/master/LICENSE.md">
         <img src="https://poser.pugx.org/blastcloud/hybrid/license" />
