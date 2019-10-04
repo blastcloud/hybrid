@@ -14,4 +14,5 @@ class UsesHybridTest extends TestCase
     {
         $this->assertInstanceOf(Hybrid::class, $this->hybrid);
     }
+
 }

@@ -33,16 +33,16 @@ class Hybrid extends Chassis
         return new MockHttpClient($this->mockHandler, $options['base_uri'] ?? null);
     }
 
-    protected function createExpectation(?InvokedRecorder $argument = null): Expectation
+    protected function createExpectation($argument = null): Expectation
     {
         return new Expectation($argument, $this);
     }
 
     /**
-     * @param InvokedRecorder $argument
+     * @param mixed $argument
      * @return Expectation
      */
-    public function expects(InvokedRecorder $argument)
+    public function expects($argument)
     {
         return parent::expects($argument);
     }

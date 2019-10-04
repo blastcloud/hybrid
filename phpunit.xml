@@ -19,6 +19,7 @@
             <exclude>
                 <file>src/Macros.php</file>
                 <file>src/Helpers/Extension.php</file>
+                <file>src/Expectation.php</file>
             </exclude>
         </whitelist>
     </filter>
