@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2020-01-10
+- Updating CI to test on 7.4
+  - This will be the last release supporting PHP 7.1
+- Added new methods: withoutQuery, withQueryKey, and withQueryKeys
+
 ## [1.0.3] - 2019-12-03
 - Security dependency update. PR provided by Github helpbot
 
