@@ -49,4 +49,53 @@ class WithQueryTest extends TestCase
             return $e->withQuery(['second' => 'another-value'], true);
         });
     }
+
+    public function testWithQueryKey()
+    {
+        $this->hybrid->queueResponse(new MockResponse());
+
+        $this->hybrid->expects($this->once())
+            ->withQueryKey('first');
+
+        $this->client->request('GET', '/some-url', [
+            'query' => ['first' => 'a-value']
+        ]);
+
+        $this->expectException(AssertionFailedError::class);
+        $this->hybrid->assertFirst(function (Expectation $e) {
+            return $e->withQueryKey('second');
+        });
+    }
+
+    public function testWithQueryKeys()
+    {
+        $this->hybrid->expects($this->once())
+            ->withQueryKeys(['second', 'first'])
+            ->willRespond(new MockResponse());
+
+        $this->client->request('GET', '/somewhere', ['query' => ['first' => 'value', 'second' => 'woeiw']]);
+
+        $this->expectException(AssertionFailedError::class);
+        $this->hybrid->assertFirst(function (Expectation $e) {
+            return $e->withQueryKeys(['third']);
+        });
+    }
+
+    public function testWithoutQuery()
+    {
+        $this->hybrid->expects($this->once())
+            ->withoutQuery()
+            ->get('/first')
+            ->willRespond(new MockResponse());
+
+        $this->client->request('GET', '/first');
+
+        $this->hybrid->queueResponse(new MockResponse());
+        $this->client->request('GET', '/second', ['query' => ['item' => 'a-value']]);
+
+        $this->expectException(AssertionFailedError::class);
+        $this->hybrid->assertLast(function (Expectation $e) {
+            return $e->withoutQuery();
+        });
+    }
 }
