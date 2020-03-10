@@ -10,10 +10,11 @@ use PHPUnit\Framework\AssertionFailedError;
 use BlastCloud\Hybrid\Expectation;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\Multipart\FormDataPart;
+use tests\ExceptionMessageRegex;
 
 class WithFormTest extends TestCase
 {
-    use UsesHybrid;
+    use UsesHybrid, ExceptionMessageRegex;
 
     /** @var HttpClient */
     public $client;
@@ -46,7 +47,7 @@ class WithFormTest extends TestCase
         });
 
         $this->expectException(AssertionFailedError::class);
-        $this->expectExceptionMessageRegExp("/\bForm\b/");
+        $this->{self::$regexMethodName}("/\bForm\b/");
 
         $this->hybrid->assertLast(function (Expectation $expect) {
             return $expect->withFormField('doesntexist', 'Some value');
@@ -102,7 +103,7 @@ class WithFormTest extends TestCase
         });
 
         $this->expectException(AssertionFailedError::class);
-        $this->expectExceptionMessageRegExp("/\bForm\b/");
+        $this->{self::$regexMethodName}("/\bForm\b/");
 
         $this->hybrid->assertFirst(function (Expectation $e) {
             return $e->withFormField('third', 'doesnt exist');

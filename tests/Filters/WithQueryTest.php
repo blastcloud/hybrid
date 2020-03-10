@@ -2,6 +2,7 @@
 
 namespace tests\Filters;
 
+use tests\ExceptionMessageRegex;
 use BlastCloud\Hybrid\{UsesHybrid, Expectation};
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;
@@ -9,7 +10,7 @@ use Symfony\Component\HttpClient\Response\MockResponse;
 
 class WithQueryTest extends TestCase
 {
-    use UsesHybrid;
+    use UsesHybrid, ExceptionMessageRegex;
 
     /** @var HttpClient */
     public $client;
@@ -38,7 +39,7 @@ class WithQueryTest extends TestCase
     public function testWithQueryFails()
     {
         $this->expectException(AssertionFailedError::class);
-        $this->expectExceptionMessageRegExp("/\bExclusive: true\b/");
+        $this->{self::$regexMethodName}("/\bExclusive: true\b/");
 
         $this->hybrid->queueResponse(new MockResponse());
         $this->client->request('GET', '/some-url', [

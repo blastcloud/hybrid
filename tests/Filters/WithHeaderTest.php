@@ -6,10 +6,11 @@ use BlastCloud\Hybrid\{Expectation, UsesHybrid};
 use Symfony\Component\HttpClient\Response\MockResponse;
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;
+use tests\ExceptionMessageRegex;
 
 class WithHeaderTest extends TestCase
 {
-    use UsesHybrid;
+    use UsesHybrid, ExceptionMessageRegex;
 
     /** @var HttpClient  */
     public $client;
@@ -44,7 +45,7 @@ class WithHeaderTest extends TestCase
     public function testWithHeadersFail()
     {
         $this->expectException(AssertionFailedError::class);
-        $this->expectExceptionMessageRegExp("/\bHeaders\b/");
+        $this->{self::$regexMethodName}("/\bHeaders\b/");
 
         $this->hybrid->queueResponse(new MockResponse());
         $this->client->request('GET', '/url', [

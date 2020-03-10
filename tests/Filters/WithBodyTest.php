@@ -3,6 +3,7 @@
 
 namespace tests\Filters;
 
+use tests\ExceptionMessageRegex;
 use BlastCloud\Hybrid\{UsesHybrid, Expectation};
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;
@@ -10,7 +11,7 @@ use Symfony\Component\HttpClient\Response\MockResponse;
 
 class WithBodyTest extends TestCase
 {
-    use UsesHybrid;
+    use UsesHybrid, ExceptionMessageRegex;
 
     /** @var HttpClient */
     public $client;
@@ -66,8 +67,8 @@ class WithBodyTest extends TestCase
     public function testWithBodyError()
     {
         $this->expectException(AssertionFailedError::class);
-        $this->expectExceptionMessageRegExp("/\bBody:\b/");
-        $this->expectExceptionMessageRegExp("/\bhello\b/");
+        $this->{self::$regexMethodName}("/\bBody:\b/");
+        $this->{self::$regexMethodName}("/\bhello\b/");
 
         $this->hybrid->queueResponse(new MockResponse());
         $this->client->request('GET', '/aowei');

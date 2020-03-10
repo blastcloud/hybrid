@@ -6,10 +6,11 @@ use BlastCloud\Hybrid\UsesHybrid;
 use Symfony\Component\HttpClient\HttpClient;
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\Response\MockResponse;
+use tests\ExceptionMessageRegex;
 
 class WithJsonTest extends TestCase
 {
-    use UsesHybrid;
+    use UsesHybrid, ExceptionMessageRegex;
 
     /** @var HttpClient */
     public $client;
@@ -38,7 +39,7 @@ class WithJsonTest extends TestCase
         ]);
 
         $this->expectException(AssertionFailedError::class);
-        $this->expectExceptionMessageRegExp("/\bJSON\b/");
+        $this->{self::$regexMethodName}("/\bJSON\b/");
 
         $this->client->request('POST', '/awoei', [
             'json' => $form + ['woeij' => 'aoiejw']
@@ -67,7 +68,7 @@ class WithJsonTest extends TestCase
 
         // Now Test Failure
         $this->expectException(AssertionFailedError::class);
-        $this->expectExceptionMessageRegExp("/\bJSON\b/");
+        $this->{self::$regexMethodName}("/\bJSON\b/");
 
         $this->client->request('POST', '/aweio', [
             'json' => $nestedJson

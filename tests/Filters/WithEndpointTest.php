@@ -7,10 +7,11 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 use PHPUnit\Framework\AssertionFailedError;
+use tests\ExceptionMessageRegex;
 
 class WithEndpointTest extends TestCase
 {
-    use UsesHybrid;
+    use UsesHybrid, ExceptionMessageRegex;
 
     /** @var HttpClient */
     public $client;
@@ -37,7 +38,7 @@ class WithEndpointTest extends TestCase
         $this->client->request('GET', '/v1/api/companies');
 
         $this->expectException(AssertionFailedError::class);
-        $this->expectExceptionMessageRegExp("/\bPOST\b/");
+        $this->{self::$regexMethodName}("/\bPOST\b/");
 
         $this->hybrid->assertFirst(function (Expectation $e) {
             return $e->withEndpoint('/v1/api/users', 'POST');

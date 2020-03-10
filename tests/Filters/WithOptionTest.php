@@ -6,10 +6,11 @@ use BlastCloud\Hybrid\{Hybrid, UsesHybrid, Expectation};
 use PHPUnit\Framework\{AssertionFailedError, TestCase};
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
+use tests\ExceptionMessageRegex;
 
 class WithOptionTest extends TestCase
 {
-    use UsesHybrid;
+    use UsesHybrid, ExceptionMessageRegex;
 
     /**
      * This constant is here just so we can have a test of overwriting
@@ -53,7 +54,7 @@ class WithOptionTest extends TestCase
     public function testWithOptionError()
     {
         $this->expectException(AssertionFailedError::class);
-        $this->expectExceptionMessageRegExp("/\bOptions\b/");
+        $this->{self::$regexMethodName}("/\bOptions\b/");
 
         $this->guzzler->queueResponse(new MockResponse());
         $this->client->request('GET', 'http://www.somewhere.org/aowei');

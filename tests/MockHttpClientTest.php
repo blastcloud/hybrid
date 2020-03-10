@@ -12,7 +12,7 @@ use Symfony\Component\HttpClient\Response\MockResponse;
 
 class MockHttpClientTest extends TestCase
 {
-    use UsesHybrid;
+    use UsesHybrid, ExceptionMessageRegex;
 
     /** @var MockHttpClient */
     public $client;
@@ -27,7 +27,7 @@ class MockHttpClientTest extends TestCase
     public function testExceptionThrownIfClosureYieldNonString()
     {
         $this->expectException(TransportException::class);
-        $this->expectExceptionMessageRegExp("/\bmust be string\b/");
+        $this->{self::$regexMethodName}("/\bmust be string\b/");
 
         $this->hybrid->queueResponse(new MockResponse());
 

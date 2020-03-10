@@ -3,6 +3,10 @@
 namespace BlastCloud\Hybrid;
 
 use BlastCloud\Chassis\Helpers\File;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\MockObject\Invocation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * BlastCloud\Chassis\Expectation
@@ -30,5 +34,17 @@ use BlastCloud\Chassis\Helpers\File;
  */
 class Expectation extends \BlastCloud\Chassis\Expectation
 {
+    public function __invoke(TestCase $instance, array $history): void
+    {
+        foreach ($this->runFilters($history) as $i) {
+            $this->times->invoked(new Invocation('', '', [], '', (object) $i['request']));
+        }
 
+        try {
+            // Invocation Counts
+            $this->times->verify();
+        } catch (ExpectationFailedException $e) {
+            Assert::fail($e->getMessage() . ' ' . $this->__toString());
+        }
+    }
 }
