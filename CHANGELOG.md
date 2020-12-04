@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2020-12-04
+- Updating dependencies
+- Support for PHP 8
+
 ## [1.1.1] - 2020-03-09
 - Update to support PHPUnit 9
 - Drop support for PHPUnit below 8.2
