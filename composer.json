@@ -10,10 +10,10 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=8.0",
         "phpunit/phpunit": ">=8.2",
         "ext-json": "*",
-        "blastcloud/chassis": "^1.0.3",
+        "blastcloud/chassis": "^1.0.6",
         "symfony/http-client": "^5.1"
     },
     "autoload": {

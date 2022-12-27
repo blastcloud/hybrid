@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.3] - 2022-12-27
+- Add support for PHP 8.2, remove all versions below 8.0
+- Updated dependencies
+- Corrected code with deprecation warnings
+
 ## [1.1.2] - 2020-12-04
 - Updating dependencies
 - Support for PHP 8

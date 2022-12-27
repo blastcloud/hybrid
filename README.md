@@ -1,7 +1,7 @@
 <p align="center"><img src="Hybrid-logo.svg" width="450"></p>
 <p align="center">
-    <a href="https://travis-ci.org/blastcloud/hybrid">
-        <img src="https://img.shields.io/github/workflow/status/blastcloud/hybrid/run-tests?label=tests">
+    <a href="#">
+        <img src="https://github.com/blastcloud/hybrid/actions/workflows/run-tests.yml/badge.svg">
     </a>
     <a href="#">
         <img src="https://poser.pugx.org/blastcloud/hybrid/v/stable" />

@@ -21,9 +21,13 @@ class WithBody extends Base implements With
         return array_filter($history, function ($call) {
             $body = $call['request']['body'] ?? null;
 
+            if (!$this->exclusive && !$body) {
+                return false;
+            }
+
             return $this->exclusive
                 ? $body == $this->body
-                : strpos($body, $this->body) !== false;
+                : str_contains($body, $this->body);
         });
     }
     
