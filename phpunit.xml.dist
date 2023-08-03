@@ -12,8 +12,8 @@
     </testsuite>
   </testsuites>
   <php>
-    <var name="HybridFilterNamespace" value="tests\testFiles"/>
-    <var name="HybridMacroFile" value="tests/testFiles/macros.php"/>
+    <var name="HybridFilterNamespace" value="tests\TestFiles"/>
+    <var name="HybridMacroFile" value="tests/TestFiles/macros.php"/>
   </php>
   <extensions>
     <bootstrap class="BlastCloud\Hybrid\Helpers\Extension"/>
