@@ -1,6 +1,6 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use BlastCloud\Hybrid\Hybrid;
 use PHPUnit\Framework\TestCase;

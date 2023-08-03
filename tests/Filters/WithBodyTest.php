@@ -1,9 +1,9 @@
 <?php
 
 
-namespace tests\Filters;
+namespace Tests\Filters;
 
-use tests\ExceptionMessageRegex;
+use Tests\ExceptionMessageRegex;
 use BlastCloud\Hybrid\{UsesHybrid, Expectation};
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;
@@ -50,7 +50,7 @@ class WithBodyTest extends TestCase
     {
         $body = 'Some long nasty string to test things against.';
 
-        $this->hybrid->queueResponse(new MockResponse(null, [
+        $this->hybrid->queueResponse(new MockResponse('the response body', [
             'status_code' => 204
         ]));
 

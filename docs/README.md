@@ -1,24 +1,12 @@
-<p align="center"><img src="Hybrid-logo.svg" width="450"></p>
-<p align="center">
-    <a href="#">
-        <img src="https://github.com/blastcloud/hybrid/actions/workflows/run-tests.yml/badge.svg">
-    </a>
-    <a href="#">
-        <img src="https://poser.pugx.org/blastcloud/hybrid/v/stable" />
-    </a>
-    <a href="https://codeclimate.com/github/blastcloud/hybrid/maintainability">
-        <img src="https://api.codeclimate.com/v1/badges/1351a1b75d4bea156f66/maintainability" />
-    </a>
-    <a href="https://github.com/blastcloud/hybrid/blob/master/LICENSE.md">
-        <img src="https://poser.pugx.org/blastcloud/hybrid/license" />
-    </a>
-</p>
-
+---
+title: Hybrid | Official Documentation
+lang: en-US
+footer: MIT Licensed | Copyright © 2019-present Adam Kelso
+layout: HomeLayout
 ---
 
-> Full Documentation at [hybrid.guzzler.dev](https://hybrid.guzzler.dev)
 
-Charge up your app or SDK with a testing library specifically for Symfony/HttpClient.
+Charge up your app or SDK with a testing library specifically for Symfony/HttpClient. Hybrid covers the process of setting up a mock handler, recording history of requests, and provides several convenience methods for creating expectations and assertions on that history.
 
 ## Installation
 
@@ -82,10 +70,6 @@ class SomeTest extends TestCase
 }
 ```
 
-## Documentation
+---
 
-[Full Documentation](https://hybrid.guzzler.dev)
-
-## License
-
-Hybrid is open-source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
+<p align="center">MIT Licensed | Copyright © 2019-present Adam Kelso</p>

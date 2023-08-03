@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" colors="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+  <coverage>
+    <report>
+      <clover outputFile="build/logs/clover.xml"/>
+      <html outputDirectory="tests/coverage"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="default">
+      <directory suffix="Test.php">tests</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <var name="HybridFilterNamespace" value="tests\testFiles"/>
+    <var name="HybridMacroFile" value="tests/testFiles/macros.php"/>
+  </php>
+  <extensions>
+    <bootstrap class="BlastCloud\Hybrid\Helpers\Extension"/>
+  </extensions>
+  <logging/>
+  <source>
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+    <exclude>
+      <file>src/Macros.php</file>
+      <file>src/Helpers/Extension.php</file>
+      <file>src/Expectation.php</file>
+    </exclude>
+  </source>
+</phpunit>

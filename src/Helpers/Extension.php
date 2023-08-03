@@ -2,10 +2,12 @@
 
 namespace BlastCloud\Hybrid\Helpers;
 
-use PHPUnit\Runner\BeforeFirstTestHook;
 use BlastCloud\Hybrid\Expectation;
+use PHPUnit\Runner\Extension\Facade;
+use PHPUnit\Runner\Extension\ParameterCollection;
+use PHPUnit\TextUI\Configuration\Configuration;
 
-final class Extension implements BeforeFirstTestHook
+final class Extension implements \PHPUnit\Runner\Extension\Extension
 {
     const NAMESPACE = 'HybridFilterNamespace';
     const MACRO_FILE = 'HybridMacroFile';
@@ -48,5 +50,18 @@ final class Extension implements BeforeFirstTestHook
 
             require_once $file;
         }
+    }
+
+    public function bootstrap(Configuration $configuration, Facade $facade, ParameterCollection $parameters): void
+    {
+        if ($namespace = $GLOBALS[self::NAMESPACE] ?? false) {
+            \BlastCloud\Hybrid\Expectation::addNamespace($namespace);
+        }
+
+        if ($file = $GLOBALS[self::MACRO_FILE] ?? false) {
+            $this->macroFiles[] = $file;
+        }
+
+        $this->loadMacros();
     }
 }

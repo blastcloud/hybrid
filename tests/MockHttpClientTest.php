@@ -1,8 +1,6 @@
 <?php
 
-
-namespace tests;
-
+namespace Tests;
 
 use BlastCloud\Hybrid\MockHttpClient;
 use BlastCloud\Hybrid\UsesHybrid;
