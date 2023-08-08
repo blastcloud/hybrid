@@ -11,7 +11,7 @@ class Hybrid extends Chassis
     /** @var MockQueue */
     protected $mockHandler;
 
-    protected $history = [];
+    protected array $history = [];
 
     public function __construct(TestCase $testInstance)
     {

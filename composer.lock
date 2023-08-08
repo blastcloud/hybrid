@@ -8,27 +8,27 @@
     "packages": [
         {
             "name": "blastcloud/chassis",
-            "version": "1.0.6",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blastcloud/chassis.git",
-                "reference": "4c57bd53e7d67f263088db3c51aff2f1d4505ac5"
+                "reference": "44bd073c65c6aef7428997666f549988aa733801"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blastcloud/chassis/zipball/4c57bd53e7d67f263088db3c51aff2f1d4505ac5",
-                "reference": "4c57bd53e7d67f263088db3c51aff2f1d4505ac5",
+                "url": "https://api.github.com/repos/blastcloud/chassis/zipball/44bd073c65c6aef7428997666f549988aa733801",
+                "reference": "44bd073c65c6aef7428997666f549988aa733801",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": ">=8.0",
-                "phpunit/phpunit": ">=8.2"
+                "php": ">=8.1",
+                "phpunit/phpunit": "^10.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "tests\\": "tests",
+                    "Tests\\": "tests",
                     "BlastCloud\\Chassis\\": "src"
                 }
             },
@@ -45,9 +45,9 @@
             "description": "A framework for building declarative HTTP client test libraries",
             "support": {
                 "issues": "https://github.com/blastcloud/chassis/issues",
-                "source": "https://github.com/blastcloud/chassis/tree/1.0.6"
+                "source": "https://github.com/blastcloud/chassis/tree/1.0.8"
             },
-            "time": "2022-12-27T18:56:20+00:00"
+            "time": "2023-08-08T02:01:03+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -597,16 +597,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.2.7",
+            "version": "10.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a215d9ee8bac1733796e4ddff3306811f14414e5"
+                "reference": "d442ce7c4104d5683c12e67e4dcb5058159e9804"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a215d9ee8bac1733796e4ddff3306811f14414e5",
-                "reference": "a215d9ee8bac1733796e4ddff3306811f14414e5",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d442ce7c4104d5683c12e67e4dcb5058159e9804",
+                "reference": "d442ce7c4104d5683c12e67e4dcb5058159e9804",
                 "shasum": ""
             },
             "require": {
@@ -646,7 +646,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "10.2-dev"
+                    "dev-main": "10.3-dev"
                 }
             },
             "autoload": {
@@ -678,7 +678,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.2.7"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.3.1"
             },
             "funding": [
                 {
@@ -694,7 +694,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-08-02T06:46:08+00:00"
+            "time": "2023-08-04T06:48:08+00:00"
         },
         {
             "name": "psr/container",
