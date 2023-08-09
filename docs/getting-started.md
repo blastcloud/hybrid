@@ -11,9 +11,9 @@ The Symfony\HttpClient component is currently considered an "experimental featur
 
 ## Requirements
 
-1. PHP 7.2+
-2. Symfony\HttpClient 4.3.1+
-3. PHPUnit 8.2+ & 9
+1. PHP 8.1+
+2. Symfony\HttpClient 6.0+
+3. PHPUnit 10+
 
 ## Installation
 
