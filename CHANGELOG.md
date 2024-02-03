@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.0.2] - 2024-02-03
+- Add support for HTTP Client 7
+- Add support for PHPUnit 11
+- Change macros type hints to support using both Hybrid and Guzzler at once
+
 ## [2.0] - 2023-08--03
 - Adding support for PHPUnit 10
 - Updating dependencies

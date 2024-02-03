@@ -3,7 +3,6 @@
 namespace BlastCloud\Hybrid;
 
 use BlastCloud\Chassis\Chassis;
-use PHPUnit\Framework\MockObject\Matcher\InvokedRecorder;
 use PHPUnit\Framework\TestCase;
 
 class Hybrid extends Chassis
@@ -22,11 +21,8 @@ class Hybrid extends Chassis
 
     /**
      * Return a new mocked HttpClient object with the provided $options.
-     *
-     * @param array $options
-     * @return MockHttpClient|mixed
      */
-    public function getClient(array $options = [])
+    public function getClient(array $options = []): mixed
     {
         $this->mockHandler = new MockQueue($this->history, $options);
 
@@ -38,11 +34,7 @@ class Hybrid extends Chassis
         return new Expectation($argument, $this);
     }
 
-    /**
-     * @param mixed $argument
-     * @return Expectation
-     */
-    public function expects($argument)
+    public function expects(mixed $argument): \BlastCloud\Chassis\Expectation
     {
         return parent::expects($argument);
     }

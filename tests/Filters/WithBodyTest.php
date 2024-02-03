@@ -4,7 +4,7 @@
 namespace Tests\Filters;
 
 use Tests\ExceptionMessageRegex;
-use BlastCloud\Hybrid\{UsesHybrid, Expectation};
+use BlastCloud\Hybrid\{MockHttpClient, UsesHybrid, Expectation};
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
@@ -13,8 +13,7 @@ class WithBodyTest extends TestCase
 {
     use UsesHybrid, ExceptionMessageRegex;
 
-    /** @var HttpClient */
-    public $client;
+    public HttpClient|MockHttpClient $client;
 
     public function setUp(): void
     {
