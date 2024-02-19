@@ -1,13 +1,13 @@
 <?php
 
-namespace tests\Filters;
+namespace Tests\Filters;
 
 use BlastCloud\Hybrid\{Expectation, Filters\WithEndpoint, UsesHybrid};
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 use PHPUnit\Framework\AssertionFailedError;
-use tests\ExceptionMessageRegex;
+use Tests\ExceptionMessageRegex;
 
 class WithEndpointTest extends TestCase
 {

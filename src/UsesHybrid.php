@@ -2,15 +2,14 @@
 
 namespace BlastCloud\Hybrid;
 
-use PHPUnit\Framework\Attributes\After;
-use PHPUnit\Framework\Attributes\Before;
-
 trait UsesHybrid
 {
-    /** @var Hybrid */
-    public $hybrid;
+    public Hybrid $hybrid;
 
-    #[Before]
+    /**
+     * @before
+     * @return void
+     */
     public function setUpHybrid()
     {
         $engine = $this->engineName();
@@ -29,8 +28,9 @@ trait UsesHybrid
      * Run through the list of expectations that were made and
      * evaluate all requests in the history. Closure::call()
      * is used to hide this method from the user APIs.
+     *
+     * @after
      */
-    #[After]
     public function runHybridExpectations()
     {
         $name = $this->engineName();

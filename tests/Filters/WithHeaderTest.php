@@ -1,12 +1,12 @@
 <?php
 
-namespace tests\Filters;
+namespace Tests\Filters;
 
 use BlastCloud\Hybrid\{Expectation, UsesHybrid};
 use Symfony\Component\HttpClient\Response\MockResponse;
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;
-use tests\ExceptionMessageRegex;
+use Tests\ExceptionMessageRegex;
 
 class WithHeaderTest extends TestCase
 {

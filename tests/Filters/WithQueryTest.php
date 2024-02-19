@@ -1,8 +1,8 @@
 <?php
 
-namespace tests\Filters;
+namespace Tests\Filters;
 
-use tests\ExceptionMessageRegex;
+use Tests\ExceptionMessageRegex;
 use BlastCloud\Hybrid\{UsesHybrid, Expectation};
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\HttpClient;

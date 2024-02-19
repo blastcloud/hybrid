@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\Filters;
+namespace Tests\Filters;
 
 use tests\ExceptionMessageRegex;
 use BlastCloud\Hybrid\{UsesHybrid, Expectation};
