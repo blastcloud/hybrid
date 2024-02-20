@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\Filters;
+namespace Tests\Filters;
 
 use Symfony\Component\HttpClient\HttpClient;
 use PHPUnit\Framework\TestCase;
@@ -10,7 +10,7 @@ use PHPUnit\Framework\AssertionFailedError;
 use BlastCloud\Hybrid\Expectation;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\Multipart\FormDataPart;
-use tests\ExceptionMessageRegex;
+use Tests\ExceptionMessageRegex;
 
 class WithFormTest extends TestCase
 {

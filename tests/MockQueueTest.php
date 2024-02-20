@@ -1,6 +1,6 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use BlastCloud\Hybrid\MockQueue;
 use PHPUnit\Framework\TestCase;

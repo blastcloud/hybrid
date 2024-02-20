@@ -1,12 +1,12 @@
 <?php
 
-namespace tests\Filters;
+namespace Tests\Filters;
 
 use BlastCloud\Hybrid\UsesHybrid;
 use Symfony\Component\HttpClient\HttpClient;
 use PHPUnit\Framework\{TestCase, AssertionFailedError};
 use Symfony\Component\HttpClient\Response\MockResponse;
-use tests\ExceptionMessageRegex;
+use Tests\ExceptionMessageRegex;
 
 class WithJsonTest extends TestCase
 {
